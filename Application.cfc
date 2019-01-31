@@ -10,6 +10,21 @@ component{
 	this.sessionTimeout = createTimeSpan(0,0,30,0);
 	this.setClientCookies = true;
 
+	/*
+		Auto-register the database.
+		This works for both Lucee and Adobe.
+	 */
+	this.datasources["cfartgallery"] = {
+		driver: "other",
+		class: 'org.sqlite.JDBC',
+		connectionString: 'jdbc:sqlite:/#expandPath( "database/cfartgallery.db" )#',
+		url: 'jdbc:sqlite:/#expandPath( "database/cfartgallery.db" )#',
+		// optional settings
+		blob:true, // default: false
+		clob:true // default: false
+	};
+
+
 	// COLDBOX STATIC PROPERTY, DO NOT CHANGE UNLESS THIS IS NOT THE ROOT OF YOUR COLDBOX APP
 	COLDBOX_APP_ROOT_PATH = getDirectoryFromPath( getCurrentTemplatePath() );
 	// The web server mapping to this application. Used for remote purposes or static purposes

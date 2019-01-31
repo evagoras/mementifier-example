@@ -3,6 +3,16 @@
     "web":{
         "rewrites":{
             "enable":true
+        },
+        "http":{
+            "port":"8595"
         }
+    },
+    "app":{
+        "libDirs":"lib"
+    },
+    "openBrowser":true,
+    "jvm":{
+        "heapSize":1024
     }
 }

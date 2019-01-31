@@ -14,7 +14,7 @@
 			handlersIndexAutoReload = true,
 
 			//Implicit Events
-			defaultEvent			= "v1:echo.index",
+			defaultEvent			= "v3:echo.index",
 			requestStartHandler		= "",
 			requestEndHandler		= "",
 			applicationStartHandler = "",
@@ -47,7 +47,11 @@
 
 		// custom settings
 		settings = {
-
+			dsn = {
+				gallery = {
+					name = "cfartgallery"
+				}
+			}
 		};
 
 		// environment settings, create a detectEnvironment() method to detect it yourself.
@@ -101,6 +105,10 @@
 				dateMask      = "yyyy-mm-dd",
 				// The default time mask to use for date properties
 				timeMask      = "HH:mm:ss"
+			},
+			qb = {
+				defaultGrammar = "MySQLGrammar",
+				returnFormat = "array"
 			}
 		};
 		

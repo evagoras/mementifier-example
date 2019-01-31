@@ -26,13 +26,15 @@
         "cbswagger":"modules/cbswagger",
         "testbox":"testbox",
         "mementifier":"modules/mementifier",
-        "route-visualizer":"modules/route-visualizer"
+        "route-visualizer":"modules/route-visualizer",
+        "qb":"modules/qb"
     },
     "dependencies":{
         "coldbox":"^5.0.0",
         "cbswagger":"^1.2.1",
         "mementifier":"^1.4.0+27",
-        "route-visualizer":"^1.2.0+4"
+        "route-visualizer":"^1.2.0+4",
+        "qb":"^6.0.4"
     },
     "scripts":{}
 }
