@@ -1,0 +1,8 @@
+{
+    "name":"mementifier-example",
+    "web":{
+        "rewrites":{
+            "enable":true
+        }
+    }
+}
