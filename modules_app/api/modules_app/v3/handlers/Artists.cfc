@@ -1,57 +1,30 @@
 component extends="api.handlers.BaseHandler" {
 
-
 	// Services
 	property name="artistService" inject="services.artist@v3";
 
-
 	/**
-	 * @hint Returns a single instance of an user's details
+	 * @hint Returns a single instance of an user's details.
+	 * 
 	 * @event ColdBox Event Model
 	 * @rc Request Collection
 	 * @prc Private Request Collection
 	 */
 	public any function show( event, rc, prc ) {
-	// cache=true
-	// cacheTimeout="10"
-	// cacheLastAccessTimeout="5"
-		// var requestViewBean = wirebox.getInstance( "beans.request.artistView@v2" );
-		// populate Bean from the arguments collection
-		// requestViewBean.populate( memento = rc );
-		// if ( requestViewBean.validates() )
-		// {
-			var artistBean = artistService.getArtist(rc.id);
-			// if ( artistBean.isPopulated() )
-			// {
-				prc.response
-					// .setStatusCode( 200 )
-					// .setStatusText( "OK" )
-					// .setContentType( "application/json" )
-					.setData(artistBean.getMemento());
-			// }
-			// else
-			// {
-			// 	prc.response
-			// 		.setStatusCode( 404 )
-			// 		.setStatusText( "Not Found" )
-			// 		.setData( "" )
-			// 		.setContentType( "application/json" )
-			// 	;
-			// }
-		// }
-		// validation errors found
-		// else
-		// {
-		// 	prc.response
-		// 		.setFormat( "json" )
-		// 		.setError( true )
-		// 		.setStatusCode( 400 )
-		// 		.setStatusText( "Bad Request" )
-		// 		.setData( requestViewBean.returnErrors() )
-		// 	;
-		// }
+		var requestBean = populateModel("beans.request.artistView@v3");
+		var vResults = validateModel(requestBean);
+		if (vResults.hasErrors()) {
+			prc.response.setError(true).setStatusCode(400).setStatusText("Bad Request")
+				.setData(vResults.getAllErrorsAsStruct());
+		} else {
+			var artistBean = artistService.getArtist(bean=requestBean);
+			if (artistBean.getIsPopulated()) {
+				prc.response.setData(artistBean.getMemento());
+			} else {
+				prc.response.setError(true).setStatusCode(404).setStatusText("Not Found").setData("");
+			}
+		}
 	}
-
 
 	/*
 	public any function list

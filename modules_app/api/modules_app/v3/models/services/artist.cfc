@@ -2,8 +2,9 @@ component alias="services.artist@v3" {
 
 	// DAOs
 	property name="artistDao" inject="daos.artist@v3";
-	property name="populator" inject="wirebox:populator";
 	// Framework Services
+	property name="validator" inject="ValidationManager@cbvalidation";
+	property name="populator" inject="wirebox:populator";
 	property name="wirebox" inject="wirebox";
 
 	public any function init() {
@@ -14,15 +15,16 @@ component alias="services.artist@v3" {
 	 * @hint Returns the order details of a Single Resource
 	 * @ID The user ID
 	 */
-	public any function getArtist(required numeric id) {
+	public any function getArtist(required any bean) {
 		var responseViewBean = wirebox.getInstance("beans.response.artistView@v3");
 		// Order Details Response Bean
-		var artistDetails = artistDao.getArtistDetails(id);
+		var artistDetails = artistDao.getArtistDetails(bean.getId());
 		// If a record for order details is found
 		if ( artistDetails.len() == 1 )
 		{
 			// dump(populator);abort;
 			populator.populateFromStruct(target=responseViewBean, memento=artistDetails[1], ignoreEmpty=true);
+			responseViewBean.setIsPopulated(true);
 			// populate the response Bean
 			// responseViewBean.populate( memento = artistDetails );
 		}

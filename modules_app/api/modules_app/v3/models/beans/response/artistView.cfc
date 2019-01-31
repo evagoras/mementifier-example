@@ -12,6 +12,8 @@ component accessors=true alias="beans.response.artistView@v3" {
 	property name="dateCreated";
 	property name="active";
 
+	property name="isPopulated" default=false;
+
 	function init() {
 		return this;
 	}
@@ -22,11 +24,11 @@ component accessors=true alias="beans.response.artistView@v3" {
 
 	this.memento = {
 		// An array of the properties/relationships to include by default
-		defaultIncludes = ["firstName","lastName","address","city","state","postalCode","email","phone","fax","active","date"],
+		defaultIncludes = ["firstName","lastName","address","city","state","postalCode","email","phone","fax","active","Date"],
 		// An array of properties/relationships to exclude by default
 		defaultExcludes = ["dateCreated"],
 		// An array of properties/relationships to NEVER include
-		neverInclude = [],
+		neverInclude = ["isPopulated"],
 		// A struct of defaults for properties/relationships if they are null
 		defaults = {},
 		// A struct of mapping functions for properties/relationships that can transform them

@@ -70,11 +70,12 @@ component accessors="true"{
 	* @reset Reset the 'data' element of the original data packet
 	*/
 	function getDataPacket( boolean reset=false ) {
-		var packet = {
-			"error" 		 = variables.error ? true : false,
-			"messages" 		 = variables.messages,
-			"data" 			 = variables.data
-		};
+		// var packet = {
+		// 	"error" 		 = variables.error ? true : false,
+		// 	"messages" 		 = variables.messages,
+		// 	"data" 			 = variables.data
+		// };
+		var packet = variables.data;
 
 		// Are we reseting the data packet
 		if( arguments.reset ){
