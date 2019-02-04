@@ -23,6 +23,7 @@ component{
 		blob:true, // default: false
 		clob:true // default: false
 	};
+	this.datasource = "cfartgallery";
 
 
 	// COLDBOX STATIC PROPERTY, DO NOT CHANGE UNLESS THIS IS NOT THE ROOT OF YOUR COLDBOX APP

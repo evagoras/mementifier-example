@@ -47,10 +47,14 @@
 
 		// custom settings
 		settings = {
-			dsn = {
-				gallery = {
-					name = "cfartgallery"
+			"dsn" = {
+				"gallery" = {
+					"name" = "cfartgallery"
 				}
+			},
+			"paging" = {
+				"maxLimit" = 500,
+				"maxDefault" = 10
 			}
 		};
 
@@ -111,6 +115,33 @@
 				returnFormat = "array"
 			}
 		};
+
+		validation = {
+			// The third-party validation manager to use, by default it uses CBValidation.
+			//manager = "class path",
+			
+			// You can store global constraint rules here with unique names
+			sharedConstraints = {
+				"pk" = {
+					"id" = {
+						type = "integer",
+						min = 1,
+						required = true
+					}
+				},
+				"pagination" = {
+					"offset" = {
+						type = "integer",
+						min = 0
+					},
+					"limit" = {
+						type = "integer",
+						min = 0
+					}
+				}
+			}
+		
+		}
 		
 		/*
 		// flash scope configuration

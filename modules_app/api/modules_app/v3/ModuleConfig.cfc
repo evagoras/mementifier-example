@@ -97,6 +97,13 @@ component {
 
 		// Custom Declared Interceptors
 		interceptors = [
+			{
+				class = "modules_app.api.modules_app.v3.interceptors.qbInterceptor",
+				name = "qbInterceptor@v3",
+				properties = {
+					// configuration
+				}
+			}
 		];
 
 		// Binder Mappings

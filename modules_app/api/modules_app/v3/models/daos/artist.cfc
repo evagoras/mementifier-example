@@ -1,36 +1,46 @@
 component alias="daos.artist@v3" {
 
-	property name="dsn" inject="coldbox:setting:dsn";
 	property name="query" inject="QueryBuilder@qb";
 
 	function init() {
 		return this;
 	}
 
-	/**
-	 * @hint Returns a CF Query of an User details
-	 * @ID The User ID
-	 */
 	public array function getArtistDetails(required numeric id) {
 		return query.from("artists")
 			.where("ARTISTID", "=", {value=id, cfsqltype="cf_sql_integer"})
-			.get(options={datasource=dsn.gallery.name});
-		// var qry = queryExecute
-		// (
-		// 	'
-		// 		SELECT *
-		// 		FROM artists
-		// 		WHERE ARTISTID = :ID
-		// 	',
-		// 	{
-		// 		ID = {
-		// 			cfsqltype = "cf_sql_integer",
-		// 			value = arguments.id
-		// 		}
-		// 	},
-		// 	{ datasource = dsn.gallery.name }
-		// );
-		// return qry;
+			.get();
+	}
+
+	public query function getArtists(required numeric offset, required numeric limit) {
+		// works
+		// var qryCount = queryExecute("SELECT COUNT(*) AS 'aggregate' FROM artists");
+		// does not work
+		var qryCount = query.from('artists').count();
+		var qry = queryExecute(
+			'
+				SELECT *, 0 as totalcount
+				FROM artists
+				order by "ARTISTID" DESC
+				LIMIT :limit
+				OFFSET :offset
+			',
+			{
+				offset = {
+					cfsqltype = "cf_sql_integer",
+					value = arguments.offset
+				},
+				limit = {
+					cfsqltype = "cf_sql_integer",
+					value = arguments.limit
+				}
+			}
+		);
+
+		for (var row=1; row <= qry.recordcount; row++){
+			querySetCell( qry, "totalcount", qryCount.aggregate, row );
+		}
+		return qry;
 	}
 
 
@@ -240,48 +250,7 @@ component alias="daos.artist@v3" {
 	}
 
 
-	public any function getArtists
-	(
-		required numeric offset,
-		required numeric limit
-	)
-	{
-		var qry = queryExecute
-		(
-			'
-				SELECT *, 0 as totalcount
-				FROM artists
-				order by "ARTISTID" DESC
-				LIMIT :limit
-				OFFSET :offset
-			',
-			{
-				offset = {
-					cfsqltype = "cf_sql_integer",
-					value = arguments.offset
-				},
-				limit = {
-					cfsqltype = "cf_sql_integer",
-					value = arguments.limit
-				}
-			},
-			{ datasource = dsn.name }
-		);
-		var qryCount = queryExecute
-		(
-			'
-				SELECT count(*) as totalcount
-				FROM artists
-			',
-			{},
-			{ datasource = dsn.name }
-		);
-		for ( var row=1; row <= qry.recordcount; row++ )
-		{
-			querySetCell( qry, "totalcount", qryCount.totalcount, row );
-		}
-		return qry;
-	}
+	
 	*/
 
 
