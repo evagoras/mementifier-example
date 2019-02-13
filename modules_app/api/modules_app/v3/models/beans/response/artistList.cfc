@@ -26,7 +26,7 @@ component accessors=true alias="beans.response.artistList@v3" {
 		// An array of the properties/relationships to include by default
 		defaultIncludes = ["firstName","lastName","address","city","state","postalCode","email","phone","fax","active","Date"],
 		// An array of properties/relationships to exclude by default
-		defaultExcludes = ["dateCreated","address"],
+		defaultExcludes = ["dateCreated"],
 		// An array of properties/relationships to NEVER include
 		neverInclude = ["isPopulated"],
 		// A struct of defaults for properties/relationships if they are null
