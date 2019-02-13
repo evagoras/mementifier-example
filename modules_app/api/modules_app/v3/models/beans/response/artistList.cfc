@@ -1,4 +1,4 @@
-component accessors=true alias="beans.response.artistView@v3" {
+component accessors=true alias="beans.response.artistList@v3" {
 
 	property name="firstName";
 	property name="lastName";
@@ -37,21 +37,6 @@ component accessors=true alias="beans.response.artistView@v3" {
 				return isBoolean(item);
 			}
 		}
-	}
-
-	string function getMemento(
-		includes="",
-		excludes="",
-		struct mappers={},
-		struct defaults={},
-		boolean ignoreDefaults=false
-	){
-		// Call mementifier
-		var memento	= this.$getMemento( argumentCollection=arguments );
-		var serializedMemento = serializeJson(memento);
-		var customAddress = '"address":{"streetName":"' & getAddress() & '","Zip":17473945,"country":"USA"}';
-		serializedMemento = replaceNoCase(serializedMemento, "}", "," & customAddress & "}");
-		return serializedMemento;
 	}
 
 }

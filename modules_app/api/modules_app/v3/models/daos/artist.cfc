@@ -14,9 +14,16 @@ component alias="daos.artist@v3" {
 
 	public query function getArtists(required numeric offset, required numeric limit) {
 		// works
-		// var qryCount = queryExecute("SELECT COUNT(*) AS 'aggregate' FROM artists");
+		var qryCount = queryExecute("SELECT COUNT(*) AS 'aggregate' FROM artists");
+		// dump(qryCount);abort;
 		// does not work
-		var qryCount = query.from('artists').count();
+		//var qryCount = query.from('artists').count();
+		// var qry = query.from("artists")
+		// 	.get("*, 0 AS totalcount")
+		// 	.offset(arguments.offset)
+		// 	.take(arguments.limit)
+		// 	.orderBy("ARTISTID", "desc")
+		// 	.get();
 		var qry = queryExecute(
 			'
 				SELECT *, 0 as totalcount
@@ -36,7 +43,6 @@ component alias="daos.artist@v3" {
 				}
 			}
 		);
-
 		for (var row=1; row <= qry.recordcount; row++){
 			querySetCell( qry, "totalcount", qryCount.aggregate, row );
 		}

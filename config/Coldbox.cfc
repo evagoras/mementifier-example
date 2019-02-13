@@ -14,7 +14,7 @@
 			handlersIndexAutoReload = true,
 
 			//Implicit Events
-			defaultEvent			= "v3:echo.index",
+			defaultEvent			= "v3:artists.index",
 			requestStartHandler		= "",
 			requestEndHandler		= "",
 			applicationStartHandler = "",

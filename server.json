@@ -1,5 +1,6 @@
 {
     "name":"mementifier-example",
+    "openBrowserURL":"/api/v3/artists/1",
     "web":{
         "rewrites":{
             "enable":true

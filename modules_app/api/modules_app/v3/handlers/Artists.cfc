@@ -10,7 +10,7 @@ component extends="api.handlers.BaseHandler" {
 		} else {
 			var artistBean = artistService.getArtist(rc.id);
 			if (artistBean.getIsPopulated()) {
-				prc.response.setData(artistBean.getMemento());
+				prc.response.setFormat("text").setContentType("application/json").setData(artistBean.getMemento());
 			} else {
 				prc.response.setStatusCode(404).setStatusText("Not Found").setData("");
 			}

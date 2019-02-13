@@ -75,6 +75,9 @@ component accessors="true"{
 			"messages" 		 = variables.messages,
 			"data" 			 = variables.data
 		};
+		if (variables.format == "text") {
+			packet = variables.data;
+		}
 
 		// Are we reseting the data packet
 		if( arguments.reset ){

@@ -11,3 +11,7 @@ To run, download and extract locally, CD into the folder using CommandBox and th
 install
 start
 ```
+
+For custom property definitions look for:
+- http://localhost:8595/api/v3/artists/1 (the `address` field)
+- http://localhost:8595/api/v3/artists

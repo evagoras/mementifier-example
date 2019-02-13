@@ -27,12 +27,9 @@ component alias="services.artist@v3" {
 		var artists = artistDao.getArtists(offset = arguments.offset, limit = arguments.limit);
 		if (artists.recordcount > 0) {
 			results.totalcount = artists.totalCount[1];
-			for (var artist in artists) {
-				var artistResponseBean = wirebox.getInstance("beans.response.artistView@v3");
-			}
 			for (var row = 1; row <= artists.recordCount; row++) {
-				var order = artists.getRow( row );
-				var artistResponseBean = wirebox.getInstance( "beans.response.artistView@v3" );
+				var artist = artists.getRow( row );
+				var artistResponseBean = wirebox.getInstance( "beans.response.artistList@v3" );
 				populator.populateFromStruct(target=artistResponseBean, memento=artist, ignoreEmpty=true);
 				artistResponseBean.setIsPopulated(true);
 				results.data.append( artistResponseBean.getMemento() );

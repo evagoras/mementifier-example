@@ -21,14 +21,14 @@
         "testbox":"^2.8.0"
     },
     "installPaths":{
-        "coldbox":"coldbox",
-        "relax":"modules/relax",
-        "cbswagger":"modules/cbswagger",
-        "testbox":"testbox",
-        "mementifier":"modules/mementifier",
-        "route-visualizer":"modules/route-visualizer",
-        "qb":"modules/qb",
-        "cbvalidation":"modules/cbvalidation"
+        "coldbox":"coldbox/",
+        "relax":"modules/relax/",
+        "cbswagger":"modules/cbswagger/",
+        "testbox":"testbox/",
+        "mementifier":"modules/mementifier/",
+        "route-visualizer":"modules/route-visualizer/",
+        "qb":"modules/qb/",
+        "cbvalidation":"modules/cbvalidation/"
     },
     "dependencies":{
         "coldbox":"^5.0.0",
