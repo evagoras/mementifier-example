@@ -6,7 +6,7 @@
             "enable":true
         },
         "http":{
-            "port":"8595"
+            "port":"80"
         }
     },
     "app":{
